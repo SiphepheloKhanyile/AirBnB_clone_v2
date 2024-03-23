@@ -37,5 +37,21 @@ def c_route(text: str):
     return f"C {sep_text}"
 
 
+@app.route('/python/<text>', strict_slashes=False)
+@app.route('/python', strict_slashes=False)
+def python_route(text: str = 'is cool'):
+    """
+    Display “Python ”, followed by the value of the text variable
+    (replace underscore _ symbols with a space )
+    default value of `text` is 'is cool'
+    """
+    if "_" in text:
+        sep_text_list = text.split("_")
+        sep_text = ' '.join(sep_text_list)
+        return f"Python {sep_text}"
+
+    return f"Python {text}"
+
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
